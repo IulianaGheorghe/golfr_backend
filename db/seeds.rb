@@ -26,6 +26,27 @@ User.create!(
   password_confirmation: '123456'
 )
 
+User.create!(
+  name: 'Vlad Albul',
+  email: 'valbul@golfr.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
+
+User.create!(
+  name: 'Alex Arget',
+  email: 'aarget@golfr.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
+
+User.create!(
+  name: 'Marius Tref',
+  email: 'mtref@golfr.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
+
 rng = Random.new
 now = Time.zone.today
 User.all.each do |user|
