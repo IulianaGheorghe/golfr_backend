@@ -26,26 +26,5 @@ module Api
         }
       }.to_json
     end
-
-    def show
-      user = User.find_by(id: params[:id])
-
-      if user.blank?
-        render json: {
-          errors: [
-            'User does not exist.'
-          ]
-        }
-        return
-      end
-
-      render json: {
-        golfer: {
-          id: user.id,
-          email: user.email,
-          name: user.name
-        }
-      }.to_json
-    end
   end
 end
