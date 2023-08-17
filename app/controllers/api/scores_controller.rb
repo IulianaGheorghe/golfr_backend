@@ -4,6 +4,28 @@ module Api
     before_action :logged_in!
     before_action :validate_score_user_id, only: :destroy
 
+    def index
+      user = User.find_by(id: params[:user_id])
+
+      if user.blank?
+        render json: {
+          errors: [
+            'User does not exist.'
+          ]
+        }
+        return
+      end
+
+      scores = user.scores.order(played_at: :desc)
+      serialized_scores = scores.map(&:serialize)
+
+      response = {
+        scores: serialized_scores,
+      }
+
+      render json: response.to_json
+    end
+
     def user_feed
       scores = Score.all.order(played_at: :desc, id: :desc)
       serialized_scores = scores.map(&:serialize)
